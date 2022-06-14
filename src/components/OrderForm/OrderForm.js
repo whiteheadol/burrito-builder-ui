@@ -36,14 +36,19 @@ class OrderForm extends Component {
       },
       body: JSON.stringify(order)
     })
-    .then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      } else {
+        throw Error(response.statusText)
+      }
+    })
     .then(data => {
-      console.log(data)
       this.props.addOrder(data)
     })
+    .catch(error => console.log('error'))
   }
 
-  // second then, push the response into the apps state
   // if a catch, console log an error message
 
   clearInputs = () => {
