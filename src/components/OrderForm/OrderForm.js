@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './OrderForm.css'
 
 class OrderForm extends Component {
   constructor(props) {
@@ -21,7 +22,6 @@ class OrderForm extends Component {
       this.setState({ error: true })
     }
     this.clearInputs();
-    // this.postOrder();
   }
 
   postOrder = () => {
@@ -50,8 +50,6 @@ class OrderForm extends Component {
     })
     .catch(error => this.setState({ fetchError: true }))
   }
-
-  // if a catch, console log an error message
 
   clearInputs = () => {
     this.setState({name: '', ingredients: []});
@@ -87,8 +85,9 @@ class OrderForm extends Component {
           onChange={e => this.handleNameChange(e)}
         />
 
+        <div className="form-left">
         { ingredientButtons }
-
+        </div>
         <p className="order-info">Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
         {this.state.error && <p className="form-error">Please include your name and at least one ingredient in your order</p>}
 
