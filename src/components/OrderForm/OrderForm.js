@@ -7,7 +7,8 @@ class OrderForm extends Component {
     this.state = {
       name: '',
       ingredients: [],
-      error: false
+      error: false,
+      fetchError: false
     };
   }
 
@@ -45,8 +46,9 @@ class OrderForm extends Component {
     })
     .then(data => {
       this.props.addOrder(data)
+      this.setState({ fetchError: false })
     })
-    .catch(error => console.log('error'))
+    .catch(error => this.setState({ fetchError: true }))
   }
 
   // if a catch, console log an error message
@@ -93,6 +95,8 @@ class OrderForm extends Component {
         <button className="sub-btn" onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
+        {this.state.fetchError && <p className="post-error">Oh no! There was a problem submitting your order. Please try again later!</p>}
+
       </form>
     )
   }
