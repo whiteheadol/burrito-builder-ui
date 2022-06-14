@@ -8,16 +8,21 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      orders: []
+      orders: [],
+      error: false
     }
   }
 
   componentDidMount() {
     getOrders()
       .then(data => {
+        this.setState({ error: false })
         this.setState({ orders: data.orders })
       })
-      .catch(err => console.error('Error fetching:', err));
+      .catch(err => {
+        this.setState({ error: true })
+        console.error('Error fetching:', err)
+      });
   }
 
   addOrder = (newOrder) => {
@@ -29,6 +34,7 @@ class App extends Component {
       <main className="App">
         <header>
           <h1 className="page-title">Burrito Builder</h1>
+          {this.state.error && <p className="load-error">Oh no! There was a problem loading the data. Please try again later.</p>}
           <OrderForm addOrder={this.addOrder}/>
         </header>
 
