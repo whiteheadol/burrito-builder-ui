@@ -52,11 +52,32 @@ describe ('Burrito Builder', () => {
   });
 
   it('Should not allow a user to submit an order unless they input their name and at least one ingredient', () => {
-    
-  })
+    cy.get('.sub-btn').click()
+    cy.get('.form-error').should('contain', 'Please include your name and at least one ingredient in your order')
+
+    cy.get('input[name="name"]').type('Chama').should('have.value', 'Chama')
+    cy.get('.form-error').should('contain', 'Please include your name and at least one ingredient in your order')
+
+    cy.get('input[name="name"]').clear()
+    cy.get('#jalapenos').click()
+    cy.get('.form-error').should('contain', 'Please include your name and at least one ingredient in your order')
+  });
+
+  // it('Should display an error message if the initial fetch call fails', () => {
+  //   cy.intercept('GET', "http://localhost:3001/api/v1/orders", {
+  //     statusCode: 500,
+  //     headers: {
+  //       'x-requested-with': 'exampleClient',
+  //     },
+  //     fixture: 'initialFetch'
+  //   })
+  //   cy.visit('http://localhost:3000/')
+  //
+  //   cy.get('.load-error').should('have.text', 'Oh no! There was a problem loading the data. Please try again later.')
+  //
+  // });
 })
 
 
 
-// Show an error message if the user trie to submit an order that doesn't have needed data
 // Should show error messages if either fetch fails
