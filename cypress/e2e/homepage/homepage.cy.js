@@ -63,7 +63,3 @@ describe ('Burrito Builder', () => {
     cy.get('.form-error').should('contain', 'Please include your name and at least one ingredient in your order')
   });
 })
-
-
-
-// Should show error messages if either fetch fails
