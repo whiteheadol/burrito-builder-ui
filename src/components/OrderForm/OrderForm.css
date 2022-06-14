@@ -1,0 +1,46 @@
+form {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.form-left {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sub-btn {
+  height: 5em;
+  width: 10em;
+}
+
+.ing-btn {
+  width: 10em;
+  margin: 0.5em 1em 0.5em 1.5em;
+}
+
+.order-info {
+  margin-left: -200px;
+}
+
+button {
+  background-color: #eedccf;
+  font-size: 1.1em;
+}
+
+button:hover {
+  transform: scale(1.06);
+  transition: 0.6s;
+  cursor: pointer;
+}
+
+input {
+  font-size: 1.1em;
+}
